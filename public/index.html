@@ -20,10 +20,22 @@
             <input id="title" type="text" placeholder="Optional title" maxlength="100" />
           </label>
           <label>
+            Tags
+            <input id="tags" type="text" placeholder="work, ideas, meeting" />
+          </label>
+          <label>
             Note
             <textarea id="content" rows="6" placeholder="Write your note here"></textarea>
           </label>
-          <button id="saveBtn">Save & share</button>
+          <label>
+            Expire after (hours, optional)
+            <input id="expiresInHours" type="number" min="1" placeholder="24" />
+          </label>
+          <div class="editor-actions">
+            <button id="previewBtn" type="button">Preview</button>
+            <button id="saveBtn">Save & share</button>
+          </div>
+          <div id="previewPane" class="preview-pane hidden"></div>
           <div id="status" aria-live="polite"></div>
         </section>
 
@@ -34,6 +46,10 @@
 
         <section class="list-card">
           <h2>Recent notes</h2>
+          <label class="search-label">
+            Search
+            <input id="searchInput" type="text" placeholder="Search by title, content, or tags" />
+          </label>
           <ul id="noteList"></ul>
         </section>
       </main>

@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const shortid = require('shortid');
 const path = require('path');
+const { createNote, getNote, listNotes } = require('./src/noteStore');
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -10,36 +10,37 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-const notes = new Map();
-
 app.post('/api/notes', (req, res) => {
-  const { title = '', content = '' } = req.body;
-  if (!content.trim()) {
+  const { title = '', content = '', tags = [], expiresInHours = null } = req.body;
+
+  if (!content || !content.trim()) {
     return res.status(400).json({ error: 'Note content is required.' });
   }
 
-  const id = shortid.generate();
-  const note = {
-    id,
-    title: title.trim().slice(0, 100),
-    content: content.trim(),
-    createdAt: new Date().toISOString(),
-  };
+  if (expiresInHours !== null && (!Number.isInteger(Number(expiresInHours)) || Number(expiresInHours) < 1)) {
+    return res.status(400).json({ error: 'Expiration must be a whole number of hours.' });
+  }
 
-  notes.set(id, note);
+  const note = createNote({ title, content, tags, expiresInHours: expiresInHours ? Number(expiresInHours) : null });
   res.status(201).json(note);
 });
 
 app.get('/api/notes/:id', (req, res) => {
-  const note = notes.get(req.params.id);
+  const note = getNote(req.params.id);
   if (!note) {
-    return res.status(404).json({ error: 'Note not found.' });
+    return res.status(404).json({ error: 'Note not found or it has expired.' });
   }
   res.json(note);
 });
 
 app.get('/api/notes', (req, res) => {
-  res.json(Array.from(notes.values()).map(({ id, title, createdAt }) => ({ id, title, createdAt })));
+  const search = req.query.search || '';
+  const notes = listNotes(search);
+  res.json(notes.map(({ id, title, createdAt, tags }) => ({ id, title, createdAt, tags })));
+});
+
+app.get('/note/:id', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.use((req, res) => {
