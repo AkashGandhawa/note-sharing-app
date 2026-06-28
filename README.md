@@ -1,5 +1,10 @@
 # Note Sharing App
 
+![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?logo=node.js&logoColor=white)
+![Express](https://img.shields.io/badge/Express-4.x-000000?logo=express&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6-F7DF1E?logo=javascript&logoColor=black)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
 A fast, lightweight note-sharing app built with Node.js, Express, and vanilla JavaScript. Create a note, generate a unique shareable link, and send it to anyone in seconds.
 
 ## Overview
