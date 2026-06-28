@@ -1,8 +1,27 @@
 # Note Sharing App
 
-A fast and lightweight note-sharing app with a simple Express backend and vanilla frontend.
+A fast, lightweight note-sharing app built with Node.js, Express, and vanilla JavaScript. Create a note, generate a unique shareable link, and send it to anyone in seconds.
 
-## Run locally
+## Overview
+
+This project is designed for quick and simple note sharing without the overhead of a heavy app. It is ideal for snippets, quick ideas, team notes, or temporary content you want to share instantly.
+
+## Features
+
+- Create notes with an optional title
+- Generate a unique shareable URL for each note
+- View recent notes at a glance
+- Minimal setup and fast local performance
+- Simple in-memory storage for lightweight prototyping
+
+## Tech Stack
+
+- Node.js
+- Express
+- Vanilla JavaScript
+- HTML & CSS
+
+## Getting Started
 
 1. Install dependencies
 
@@ -10,17 +29,37 @@ A fast and lightweight note-sharing app with a simple Express backend and vanill
 npm install
 ```
 
-2. Start the app
+2. Start the development server
 
 ```bash
 npm start
 ```
 
-3. Open `http://localhost:4000`
+3. Open your browser at
 
-## Features
+```text
+http://localhost:4000
+```
 
-- Create notes with optional title
-- Share notes via unique URL
-- View recent shared notes
-- Minimal in-memory storage for fast prototyping
+## Usage
+
+- Enter a title and note content
+- Click "Save & share" to create the note
+- Copy the generated link and share it with others
+
+## Project Structure
+
+```text
+note-sharing-app/
+├── public/
+│   ├── app.js
+│   ├── index.html
+│   └── styles.css
+├── server.js
+├── package.json
+└── README.md
+```
+
+## License
+
+This project is open-source and available under the MIT License.
