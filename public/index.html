@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Note Sharing App</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header>
+        <h1>Note Sharing</h1>
+        <p>Save a note and share the link instantly.</p>
+      </header>
+
+      <main>
+        <section class="form-card">
+          <label>
+            Title
+            <input id="title" type="text" placeholder="Optional title" maxlength="100" />
+          </label>
+          <label>
+            Note
+            <textarea id="content" rows="6" placeholder="Write your note here"></textarea>
+          </label>
+          <button id="saveBtn">Save & share</button>
+          <div id="status" aria-live="polite"></div>
+        </section>
+
+        <section class="share-card">
+          <div id="noteLink" class="hidden"></div>
+          <button id="copyBtn" class="hidden">Copy link</button>
+        </section>
+
+        <section class="list-card">
+          <h2>Recent notes</h2>
+          <ul id="noteList"></ul>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
